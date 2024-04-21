@@ -1,0 +1,44 @@
+import java.util.*;
+public class Pract2
+{
+    public static void main(String [] args){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Ingrese el tamaño de la lista de numeros a: ");
+        int m = sc.nextInt();
+        System.out.println("Ingrese los numeros correspondientes: ");
+        String a [] = new String [m+1];
+        for(int i = 0; i < m+1; i++){
+            a [i] = sc.nextLine();
+        }
+        System.out.println("Ingrese el numero x que desea comprobar si se puede crear: ");
+        String x = sc.nextLine();
+        boolean b = puedoGenerar(a, x);
+        
+        System.out.print("a = [");for(int i = 0; i < m+1; i++){
+        System.out.print(a[i]+", ");
+        }System.out.print("]");
+        System.out.println();
+        System.out.println("x = "+ x);
+        System.out.println("resultado: "+b);
+    }
+    
+    public static boolean puedoGenerar(String [] a, String x){
+        return Verificacion(a, x, 0, "");
+    }
+    
+    public static boolean Verificacion(String[] a, String x, int cont, String aux){
+        if (cont == a.length) {
+            return aux.equals(x);
+        }
+        
+        if (Verificacion(a, x, cont + 1, aux + a[cont])) {
+            return true;
+        }
+        
+        if (Verificacion(a, x, cont + 1, aux)) {
+            return true;
+        }
+        
+        return false;
+    }
+}
